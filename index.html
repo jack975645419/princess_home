@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>小公主乐园</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- 密码门 -->
+<div id="gate" class="gate">
+  <div class="gate-card">
+    <div class="gate-crown">👑</div>
+    <h1>小公主乐园</h1>
+    <p class="gate-tip">请说出通关密语，才能进入乐园哦～</p>
+    <input id="gate-input" type="password" placeholder="密语" autocomplete="off">
+    <button id="gate-btn" type="button">进入乐园</button>
+    <p id="gate-error" class="gate-error"></p>
+  </div>
+</div>
+
+<!-- 主地图 -->
+<div id="app" class="app" hidden>
+  <header class="topbar">
+    <div>
+      <h1>🏰 小公主乐园</h1>
+      <p>欢迎回来，亲爱的公主殿下～今天想去哪里玩呢？</p>
+    </div>
+    <button id="lock-btn" class="lock-btn" type="button">🔒 重新上锁</button>
+  </header>
+
+  <main class="map-scene">
+    <div class="sun">🌞</div>
+    <div class="cloud cloud-1">☁️</div>
+    <div class="cloud cloud-2">☁️</div>
+    <div class="cloud cloud-3">☁️</div>
+
+    <div class="road"></div>
+
+    <a class="building restaurant" href="restaurant.html">
+      <span class="b-emoji">🍽️</span>
+      <span class="b-name">小苦瓜餐厅</span>
+      <span class="b-tag">营业中</span>
+    </a>
+
+    <div class="building locked b-carousel" title="还没建好哦">
+      <span class="b-emoji">🎠</span>
+      <span class="b-name">旋转木马</span>
+      <span class="b-tag">敬请期待</span>
+    </div>
+
+    <div class="building locked b-cake" title="还没建好哦">
+      <span class="b-emoji">🍰</span>
+      <span class="b-name">甜品小屋</span>
+      <span class="b-tag">敬请期待</span>
+    </div>
+
+    <div class="building locked b-garden" title="还没建好哦">
+      <span class="b-emoji">🌷</span>
+      <span class="b-name">公主花园</span>
+      <span class="b-tag">敬请期待</span>
+    </div>
+
+    <div class="deco tree">🌳</div>
+    <div class="deco tree t2">🌲</div>
+    <div class="deco flower">🌸</div>
+    <div class="deco flower f2">🌼</div>
+    <div class="deco pond">🦆</div>
+  </main>
+
+  <footer class="footer">小公主乐园 · 每天都为你开放 💕</footer>
+</div>
+
+<script>
+(function () {
+  var PASSWORD = 'dengdeng';
+  var KEY = 'princess_gate_ok';
+  var gate = document.getElementById('gate');
+  var app = document.getElementById('app');
+  var input = document.getElementById('gate-input');
+  var btn = document.getElementById('gate-btn');
+  var err = document.getElementById('gate-error');
+
+  function openPark() {
+    sessionStorage.setItem(KEY, '1');
+    gate.hidden = true;
+    app.hidden = false;
+  }
+  function lockPark() {
+    sessionStorage.removeItem(KEY);
+    app.hidden = true;
+    gate.hidden = false;
+    err.textContent = '';
+    input.value = '';
+    input.focus();
+  }
+
+  function check() {
+    if (input.value.trim().toLowerCase() === PASSWORD) {
+      openPark();
+    } else {
+      err.textContent = '密语不对哦，再想一想吧～';
+      input.value = '';
+      input.focus();
+    }
+  }
+
+  btn.addEventListener('click', check);
+  input.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') check();
+  });
+  document.getElementById('lock-btn').addEventListener('click', lockPark);
+
+  if (sessionStorage.getItem(KEY) === '1') openPark();
+  else input.focus();
+})();
+</script>
+</body>
+</html>

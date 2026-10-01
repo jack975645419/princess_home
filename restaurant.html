@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>小苦瓜餐厅 · 小公主乐园</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="shop">
+  <a class="back-link" href="index.html">← 回到乐园地图</a>
+
+  <section class="shop-hero">
+    <div class="shop-emoji">🍽️</div>
+    <h1>小苦瓜餐厅</h1>
+    <p>欢迎光临～今天也要好好吃饭哦，公主殿下 💕</p>
+  </section>
+
+  <h2 class="section-title">今日菜单 <small>点一点菜名，看看怎么做</small></h2>
+  <div class="menu-grid">
+    <div class="dish" data-dish="shrimp">
+      <div class="dish-emoji">🦐</div>
+      <p class="dish-name">油焖大虾</p>
+      <p class="dish-desc">红亮油润，鲜甜入味，连汤汁都能拌一碗饭</p>
+    </div>
+    <div class="dish dish-soon">
+      <div class="dish-emoji">🍳</div>
+      <p class="dish-name">？？？</p>
+      <p class="dish-desc">新菜还在研发中，敬请期待～</p>
+    </div>
+  </div>
+
+  <section class="recipe" id="recipe-shrimp" hidden>
+    <h2>🦐 油焖大虾</h2>
+    <p class="recipe-sub">鲁菜经典做法 · 鲜香甜咸 · 约 30 分钟</p>
+
+    <h3>🥣 食材</h3>
+    <ul>
+      <li>新鲜大虾 500 克（个头饱满、肉质紧实的最好）</li>
+      <li>生姜 3 片、大蒜 4 瓣、小葱 2 根</li>
+      <li>料酒 2 汤匙</li>
+      <li>生抽 1 汤匙、老抽 半汤匙（上色用）</li>
+      <li>白糖 1 茶匙、盐 适量</li>
+      <li>香醋 半汤匙、淀粉 1 茶匙（可调碗汁，可选）</li>
+      <li>食用油 适量（比平时炒菜多一些）</li>
+    </ul>
+
+    <h3>👩‍🍳 做法</h3>
+    <ol>
+      <li><b>处理虾：</b>剪去虾须和虾枪，开背挑出虾线，清洗两遍后沥干水分。开背会让虾更入味。</li>
+      <li><b>去腥腌制：</b>虾放入碗中，加料酒和姜片腌 10 分钟。</li>
+      <li><b>备料调汁：</b>姜切片、蒜拍扁、葱切段。小碗里放入生抽、老抽、白糖、香醋、淀粉和半碗清水，搅匀成料汁。</li>
+      <li><b>煎虾出红油：</b>锅中倒油（稍多一点），五成热下虾，中小火两面慢煎至金黄；用锅铲轻压虾头，逼出红红的虾油，这一步是香味的关键。</li>
+      <li><b>爆香：</b>下姜片、蒜瓣、葱段，大火炒出香味。</li>
+      <li><b>焖煮：</b>倒入料汁翻拌均匀，加少量清水（刚没过虾底即可），盖盖中小火焖 5～8 分钟，中途翻拌一次防糊锅。</li>
+      <li><b>收汁出锅：</b>开盖转大火收汁，不停翻炒到汤汁浓稠、虾身红亮，撒葱花即可出锅。</li>
+    </ol>
+
+    <h3>💡 小贴士</h3>
+    <ul class="tips">
+      <li>油焖的要点：加汤要少、时间要短，成菜才会浅红油亮。</li>
+      <li>收汁时一定要不停翻动，否则容易糊底。</li>
+      <li>怕腥可以把料酒换成米酒或啤酒；喜欢辣就加点干辣椒、花椒。</li>
+      <li>剩下的汤汁拌饭、拌面都超级香，别浪费啦～</li>
+    </ul>
+
+    <p class="source">做法整理自网络家常菜谱（鲁菜油焖技法）。</p>
+    <button class="close-btn" type="button" data-close>收起菜谱</button>
+  </section>
+</div>
+
+<script>
+// 没通过密码门就直接访问本页时，请回主页
+if (sessionStorage.getItem('princess_gate_ok') !== '1') {
+  location.replace('index.html');
+}
+
+(function () {
+  var dishes = document.querySelectorAll('.dish[data-dish]');
+  dishes.forEach(function (dish) {
+    dish.addEventListener('click', function () {
+      var panel = document.getElementById('recipe-' + dish.dataset.dish);
+      if (!panel) return;
+      var willOpen = panel.hidden;
+      panel.hidden = !willOpen;
+      dish.classList.toggle('active', willOpen);
+      if (willOpen) panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+  });
+  document.querySelectorAll('[data-close]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var panel = btn.closest('.recipe');
+      panel.hidden = true;
+      document.querySelector('.dish.active').classList.remove('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,293 @@
+/* 小公主乐园 · 通用样式 */
+:root {
+  --pink: #ff9ec4;
+  --pink-deep: #f06292;
+  --green: #8fd694;
+  --green-deep: #4caf50;
+  --cream: #fffaf3;
+  --ink: #5b4636;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "PingFang SC", "Microsoft YaHei", "Segoe UI", sans-serif;
+  color: var(--ink);
+  background: linear-gradient(#cdeffd 0%, #e9f9e2 45%, #bfe9b6 100%);
+  min-height: 100vh;
+}
+
+/* ---------- 密码门 ---------- */
+.gate {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at 50% 30%, #ffe3f0, #ffc3de 60%, #f7a8c9);
+  z-index: 50;
+}
+.gate[hidden] { display: none; }
+
+.gate-card {
+  width: min(90vw, 380px);
+  padding: 32px 26px 28px;
+  text-align: center;
+  background: #fff;
+  border-radius: 28px;
+  box-shadow: 0 16px 40px rgba(214, 106, 152, .35);
+  border: 4px solid #fff;
+  outline: 3px dashed #ffc7dd;
+  outline-offset: -12px;
+}
+.gate-crown { font-size: 52px; animation: bob 2s ease-in-out infinite; }
+.gate-card h1 { margin: 6px 0 4px; font-size: 26px; color: var(--pink-deep); }
+.gate-tip { margin: 0 0 18px; font-size: 14px; color: #9c8878; }
+.gate-card input {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 16px;
+  border: 2px solid #ffd0e2;
+  border-radius: 14px;
+  outline: none;
+  text-align: center;
+}
+.gate-card input:focus { border-color: var(--pink); }
+.gate-card button {
+  margin-top: 12px;
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background: linear-gradient(var(--pink), var(--pink-deep));
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+}
+.gate-card button:hover { filter: brightness(1.06); }
+.gate-error { min-height: 20px; margin: 10px 0 0; font-size: 13px; color: #e2553d; }
+
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* ---------- 顶栏 ---------- */
+.app[hidden] { display: none; }
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 18px 24px;
+  background: rgba(255, 255, 255, .75);
+  backdrop-filter: blur(6px);
+  border-bottom: 3px dashed #ffc7dd;
+}
+.topbar h1 { margin: 0; font-size: 26px; color: var(--pink-deep); }
+.topbar p { margin: 4px 0 0; font-size: 14px; color: #907a68; }
+.lock-btn {
+  padding: 8px 16px;
+  font-size: 13px;
+  color: #8a7565;
+  background: #fff;
+  border: 2px solid #ffd0e2;
+  border-radius: 999px;
+  cursor: pointer;
+}
+.lock-btn:hover { background: #fff2f7; }
+
+/* ---------- 地图 ---------- */
+.map-scene {
+  position: relative;
+  width: min(1000px, 94vw);
+  min-height: 520px;
+  margin: 26px auto 10px;
+  padding: 30px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 20% 80%, #d7f5cf 0 22%, transparent 23%),
+    radial-gradient(circle at 78% 70%, #d7f5cf 0 16%, transparent 17%),
+    linear-gradient(#eafbdc, #c8edb6);
+  border: 6px solid #fff;
+  border-radius: 32px;
+  box-shadow: 0 12px 30px rgba(90, 140, 80, .25);
+}
+
+.sun { position: absolute; top: 14px; right: 22px; font-size: 46px; animation: bob 3s ease-in-out infinite; }
+.cloud { position: absolute; font-size: 34px; opacity: .85; animation: drift 18s linear infinite; }
+.cloud-1 { top: 26px; left: 6%; }
+.cloud-2 { top: 90px; left: 40%; font-size: 26px; animation-duration: 24s; }
+.cloud-3 { top: 46px; left: 66%; font-size: 30px; animation-duration: 30s; }
+@keyframes drift {
+  from { transform: translateX(-20px); }
+  to { transform: translateX(120px); }
+}
+
+.road {
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  top: 58%;
+  height: 62px;
+  background: repeating-linear-gradient(90deg, #f6e6c9 0 34px, #eed7b2 34px 68px);
+  border-radius: 40px;
+  box-shadow: inset 0 0 0 3px rgba(255, 255, 255, .6);
+}
+
+.building {
+  position: absolute;
+  width: 150px;
+  padding: 14px 10px;
+  text-align: center;
+  background: #fff;
+  border: 4px solid var(--pink);
+  border-radius: 22px;
+  box-shadow: 0 8px 0 rgba(0, 0, 0, .08), 0 12px 22px rgba(120, 90, 70, .18);
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--ink);
+  transition: transform .18s ease;
+}
+.building:hover { transform: translateY(-10px) scale(1.04); }
+.building .b-emoji { display: block; font-size: 46px; line-height: 1.1; }
+.building .b-name { display: block; margin-top: 6px; font-weight: bold; font-size: 15px; }
+.building .b-tag {
+  display: inline-block;
+  margin-top: 6px;
+  padding: 2px 10px;
+  font-size: 12px;
+  border-radius: 999px;
+  color: #fff;
+  background: var(--pink-deep);
+}
+.building.restaurant { left: 12%; top: 22%; border-color: var(--green-deep); }
+.building.restaurant .b-tag { background: var(--green-deep); }
+
+.building.locked {
+  cursor: not-allowed;
+  background: #f4f1ec;
+  border-color: #d8d0c6;
+  color: #a89a8b;
+  opacity: .9;
+}
+.building.locked .b-tag { background: #b6aaa0; }
+.building.locked:hover { transform: translateY(-4px); }
+
+.building.locked.b-carousel { left: 36%; top: 12%; }
+.building.locked.b-cake { left: 62%; top: 30%; }
+.building.locked.b-garden { left: 44%; top: 72%; }
+
+.deco { position: absolute; font-size: 34px; user-select: none; }
+.tree { left: 4%; top: 66%; font-size: 46px; }
+.t2 { left: 84%; top: 12%; }
+.flower { left: 88%; top: 76%; }
+.f2 { left: 26%; top: 88%; font-size: 26px; }
+.pond {
+  left: 70%;
+  top: 82%;
+  font-size: 40px;
+  animation: bob 2.6s ease-in-out infinite;
+}
+
+.footer { padding: 4px 0 26px; text-align: center; font-size: 13px; color: #8a7565; }
+
+/* ---------- 餐厅页 ---------- */
+.shop {
+  width: min(880px, 94vw);
+  margin: 0 auto;
+  padding: 20px 0 40px;
+}
+.back-link {
+  display: inline-block;
+  margin: 16px 0 6px;
+  padding: 8px 16px;
+  font-size: 14px;
+  color: var(--ink);
+  text-decoration: none;
+  background: #fff;
+  border: 2px solid #ffd0e2;
+  border-radius: 999px;
+}
+.back-link:hover { background: #fff2f7; }
+
+.shop-hero {
+  margin-top: 12px;
+  padding: 24px;
+  text-align: center;
+  background: linear-gradient(#f3ffe9, #dff5cf);
+  border: 6px solid #fff;
+  border-radius: 28px;
+  box-shadow: 0 12px 28px rgba(90, 140, 80, .2);
+}
+.shop-hero .shop-emoji { font-size: 60px; animation: bob 2.4s ease-in-out infinite; }
+.shop-hero h1 { margin: 6px 0; font-size: 28px; color: var(--green-deep); }
+.shop-hero p { margin: 0; font-size: 14px; color: #7a6a58; }
+
+.section-title {
+  margin: 28px 0 12px;
+  font-size: 20px;
+  color: var(--pink-deep);
+}
+.section-title small { margin-left: 8px; font-size: 13px; color: #a2927f; font-weight: normal; }
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+.dish {
+  padding: 18px;
+  text-align: left;
+  background: #fff;
+  border: 3px solid #ffe0ec;
+  border-radius: 22px;
+  box-shadow: 0 8px 18px rgba(120, 90, 70, .12);
+  cursor: pointer;
+  transition: transform .16s ease, border-color .16s ease;
+}
+.dish:hover { transform: translateY(-6px); border-color: var(--pink); }
+.dish.active { border-color: var(--green-deep); }
+.dish-emoji { font-size: 40px; }
+.dish-name { margin: 6px 0 4px; font-size: 18px; font-weight: bold; }
+.dish-desc { margin: 0; font-size: 13px; color: #a2927f; line-height: 1.6; }
+.dish-soon { opacity: .65; cursor: default; }
+.dish-soon:hover { transform: none; border-color: #ffe0ec; }
+
+.recipe {
+  margin-top: 18px;
+  padding: 22px;
+  background: #fffdf8;
+  border: 3px dashed var(--green);
+  border-radius: 24px;
+}
+.recipe[hidden] { display: none; }
+.recipe h2 { margin: 0 0 4px; font-size: 22px; color: var(--green-deep); }
+.recipe .recipe-sub { margin: 0 0 16px; font-size: 13px; color: #a2927f; }
+.recipe h3 { margin: 16px 0 8px; font-size: 16px; color: var(--pink-deep); }
+.recipe ul, .recipe ol { margin: 0; padding-left: 22px; line-height: 1.9; font-size: 14px; }
+.recipe .tips { color: #8a7565; }
+.recipe .close-btn {
+  margin-top: 18px;
+  padding: 8px 18px;
+  font-size: 14px;
+  color: #fff;
+  background: var(--green-deep);
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+}
+.recipe .source { margin: 14px 0 0; font-size: 12px; color: #b3a596; }
+
+@media (max-width: 640px) {
+  .building { width: 120px; }
+  .building .b-emoji { font-size: 34px; }
+  .building.locked.b-carousel { left: 30%; top: 8%; }
+  .building.locked.b-cake { left: 62%; top: 22%; }
+  .building.locked.b-garden { left: 40%; top: 74%; }
+  .map-scene { min-height: 560px; }
+}
