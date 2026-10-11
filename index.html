@@ -62,6 +62,12 @@
       <span class="b-tag">敬请期待</span>
     </div>
 
+    <a class="building airport b-airport" href="airport.html">
+      <span class="b-emoji">✈️</span>
+      <span class="b-name">国家公主机场</span>
+      <span class="b-tag">候机中</span>
+    </a>
+
     <div class="deco tree">🌳</div>
     <div class="deco tree t2">🌲</div>
     <div class="deco flower">🌸</div>
@@ -74,7 +80,7 @@
 
 <script>
 (function () {
-  var PASSWORD = 'dengdeng';
+  var PASSWORDS = ['dengdeng', 'dd'];
   var KEY = 'princess_gate_ok';
   var gate = document.getElementById('gate');
   var app = document.getElementById('app');
@@ -97,7 +103,8 @@
   }
 
   function check() {
-    if (input.value.trim().toLowerCase() === PASSWORD) {
+    var v = input.value.trim().toLowerCase();
+    if (PASSWORDS.indexOf(v) >= 0) {
       openPark();
     } else {
       err.textContent = '密语不对哦，再想一想吧～';

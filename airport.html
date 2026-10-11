@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>中国国家公主机场 · 小公主乐园</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<script>
+if (sessionStorage.getItem('princess_gate_ok') !== '1') {
+  location.replace('index.html');
+}
+</script>
+
+<header class="airport-topbar">
+  <a class="airport-back" href="index.html">← 回到乐园地图</a>
+  <h1>✈️ 中国国家公主机场</h1>
+  <p class="airport-tip">公主殿下专机航线一览～点击登机牌出发！</p>
+</header>
+
+<main class="terminal">
+
+  <section class="gate-card">
+    <div class="gate-crown">🛫</div>
+    <h2 style="color:var(--pink-deep);margin:6px 0 14px">航班一览</h2>
+
+    <a class="flight" href="https://jack975645419.github.io/2027-1-au-hu-cz-trip/" target="_blank" rel="noopener">
+      <span class="f-emoji">🏰</span>
+      <span class="f-info">
+        <span class="f-route">中国 · 中欧 4 国</span>
+        <span class="f-date">2027 年 1 月 23 日 – 2 月 2 日</span>
+        <span class="f-desc">布达佩斯 / 维也纳 / 克鲁姆洛夫 / 布拉格 · 9 晚 10 天</span>
+      </span>
+      <span class="f-status">已起飞</span>
+    </a>
+
+    <a class="flight" href="https://jack975645419.github.io/Trip_2027_11_YunNan/" target="_blank" rel="noopener">
+      <span class="f-emoji">🍂</span>
+      <span class="f-info">
+        <span class="f-route">云南 · 滇西赏秋</span>
+        <span class="f-date">2027 年 11 月 17 日 – 11 月 21 日</span>
+        <span class="f-desc">昆明 / 腾冲 / 保山 · 4 晚 5 天</span>
+      </span>
+      <span class="f-status">即将开航</span>
+    </a>
+
+    <div class="terminal-note">
+      后续的旅程都会在这里新增～ 每新建一个 GitHub Pages 站点，
+      就在这里加一张登机牌 ✈
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">中国国家公主机场 · 公主专机航站楼 💕</footer>
+
+</body>
+</html>
