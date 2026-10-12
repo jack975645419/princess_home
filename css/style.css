@@ -357,10 +357,71 @@ body {
 .recipe .source { margin: 14px 0 0; font-size: 12px; color: #b3a596; }
 
 @media (max-width: 640px) {
-  .building { width: 120px; }
-  .building .b-emoji { font-size: 34px; }
-  .building.locked.b-carousel { left: 30%; top: 8%; }
-  .building.locked.b-cake { left: 62%; top: 22%; }
-  .building.locked.b-garden { left: 40%; top: 74%; }
-  .map-scene { min-height: 560px; }
+  /* 顶栏：标题 + 按钮垂直堆叠 */
+  .topbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    padding: 16px 18px 12px;
+  }
+  .topbar > div { width: 100%; }
+  .lock-btn { width: 100%; }
+
+  /* 地图区变成列表容器：保留米白卡 + 草地色背景，但建筑改为纵向堆叠 */
+  .map-scene {
+    width: 94vw;
+    min-height: 0;
+    margin: 14px auto 10px;
+    padding: 16px 14px 20px;
+    overflow: visible;
+  }
+  /* 隐藏占空间大的装饰（保留视觉氛围）*/
+  .sun { display: none; }
+  .cloud-1 { top: 8px; left: 4%; font-size: 22px; opacity: .55; }
+  .cloud-2 { top: 24px; left: 30%; font-size: 18px; opacity: .45; }
+  .cloud-3 { display: none; }
+  .road { display: none; }
+  .deco { display: none; }
+  .deco.pond { display: block; top: auto; bottom: 8px; right: 8px; font-size: 24px; }
+
+  /* 所有建筑改为：flex 行内块，按时间顺序自上而下堆叠 */
+  .building,
+  .building.restaurant,
+  .building.locked,
+  .building.locked.b-carousel,
+  .building.locked.b-cake,
+  .building.locked.b-garden,
+  .building.airport,
+  .building.airport.b-airport {
+    position: static !important;
+    left: auto !important;
+    top: auto !important;
+    width: 100%;
+    margin: 0 0 10px;
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-align: left;
+    box-sizing: border-box;
+  }
+  .building .b-emoji {
+    flex: 0 0 auto;
+    font-size: 32px;
+    line-height: 1;
+    margin: 0;
+  }
+  .building .b-name {
+    flex: 1 1 auto;
+    display: block;
+    margin: 0;
+    font-size: 16px;
+    text-align: left;
+  }
+  .building .b-tag {
+    flex: 0 0 auto;
+    margin: 0;
+    font-size: 11px;
+    padding: 3px 10px;
+  }
 }
