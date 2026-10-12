@@ -138,6 +138,8 @@ body {
   border-radius: 40px;
   box-shadow: inset 0 0 0 3px rgba(255, 255, 255, .6);
 }
+/* 蛇形道路：默认桌面端隐藏，仅移动端展示 */
+.road-snake { display: none; }
 
 .building {
   position: absolute;
@@ -412,11 +414,11 @@ body {
   .building .b-tag { font-size: 10px; padding: 2px 8px; margin-top: 4px; display: inline-block; }
 
   /* 沿蛇形路两侧交错布置 */
-  .building.restaurant    { left:  4%; top:  9%; }
-  .building.b-carousel     { left: 62%; top: 22%; }
+  .building.restaurant    { left:  4%; top:  8%; }
+  .building.b-carousel     { left: 58%; top: 16%; }
   .building.b-cake         { left:  4%; top: 36%; }
-  .building.b-garden       { left: 60%; top: 52%; }
-  .building.airport        { left: 18%; top: 68%; }
+  .building.b-garden       { left: 56%; top: 50%; }
+  .building.airport        { left: 14%; top: 70%; }
 
   /* 装饰落点（避开建筑位置） */
   .deco.tree    { left: 88%; top:  8%; }
